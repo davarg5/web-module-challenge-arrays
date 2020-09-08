@@ -68,11 +68,10 @@ For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainb
 function addFlavor(flavor, originalFlavors)
 {
     originalFlavors.unshift(flavor);
-    return originalFlavors;
+    console.log(originalFlavors);
 }
 
 addFlavor('Rainbow Sherbert', originalFlavors);
-console.log(originalFlavors);
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
 
@@ -84,11 +83,13 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
 
-function removeLastFlavor(/*code here*/){
-
-    /*code here*/
-
+function removeLastFlavor(originalFlavors)
+{
+    originalFlavors.pop();
+    console.log(originalFlavors);
 }
+
+removeLastFlavor(originalFlavors);
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
 
@@ -99,11 +100,12 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(/*code here*/){
-
-    /*code here*/
-
+function getFlavorByIndex(originalFlavors, i)
+{
+    return originalFlavors[i]; 
 }
+
+console.log(getFlavorByIndex(originalFlavors,2));
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array. 
 
@@ -118,12 +120,14 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(/*code here*/){
-
-    /*code here*/
-
+function removeFlavorByName(originalFlavors, flavor)
+{
+    originalFlavors.splice(originalFlavors.indexOf('Vanilla'),1);
+    return originalFlavors;
 }
 
+removeFlavorByName(originalFlavors, 'Vanilla');
+console.log(originalFlavors);
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
 
