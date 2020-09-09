@@ -30,6 +30,12 @@ var originalFlavors = ["Banana Nut Fudge",
     "Vanilla",
     "Vanilla Burnt Almond"]
 
+let newList =[];
+for(let i=0; i<originalFlavors.length;i++)
+{
+    newList.push(originalFlavors[i]);
+}
+
 /* Task 1: Confirm that the array is exactly 31 flavors. Your function should accept:
 
 (1) an array 
@@ -40,9 +46,9 @@ To save you from having to count the items above, you can assume that length of 
 
 i.e. is31Flavors(originalFlavors) will return TRUE.*/
 
-function is31Flavors(originalFlavors)
+function is31Flavors(list)
 {
-    if(originalFlavors.length === 31)
+    if(list.length === 31)
     {
         return true;
     }
@@ -52,7 +58,7 @@ function is31Flavors(originalFlavors)
     }
 }
 
-console.log(is31Flavors(originalFlavors));
+console.log(is31Flavors(newList));
 
 /* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
 
@@ -65,13 +71,13 @@ Your function should add the flavor to the front of the array and console.log th
 
 For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */ 
 
-function addFlavor(flavor, originalFlavors)
+function addFlavor(flavor, list)
 {
-    originalFlavors.unshift(flavor);
-    console.log(originalFlavors);
+    list.unshift(flavor);
+    console.log(list);
 }
 
-addFlavor('Rainbow Sherbert', originalFlavors);
+addFlavor('Rainbow Sherbert', newList);
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
 
@@ -83,13 +89,13 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
 
-function removeLastFlavor(originalFlavors)
+function removeLastFlavor(list)
 {
-    originalFlavors.pop();
-    console.log(originalFlavors);
+    list.pop();
+    console.log(list);
 }
 
-removeLastFlavor(originalFlavors);
+removeLastFlavor(newList);
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
 
@@ -100,12 +106,12 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(originalFlavors, i)
+function getFlavorByIndex(list, i)
 {
-    return originalFlavors[i]; 
+    return list[i]; 
 }
 
-console.log(getFlavorByIndex(originalFlavors,2));
+console.log(getFlavorByIndex(newList,2));
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array. 
 
@@ -120,14 +126,14 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(originalFlavors, flavor)
+function removeFlavorByName(list, flavor)
 {
-    originalFlavors.splice(originalFlavors.indexOf('Vanilla'),1);
-    return originalFlavors;
+    list.splice(list.indexOf('Vanilla'),1);
+    return list;
 }
 
-removeFlavorByName(originalFlavors, 'Vanilla');
-console.log(originalFlavors);
+removeFlavorByName(newList, 'Vanilla');
+console.log(newList);
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
 
@@ -137,11 +143,18 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
-function copy(/*code here*/){
+function copy(list, newArray)
+{
 
-    /*code here*/
-
+    for(let i=0; i<originalFlavors.length;i++)
+    {
+    newArray.push(originalFlavors[i]);
+    }
+    return newArray;
 }
+
+let x = []
+console.log(copy(originalFlavors, x));
 
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
 
@@ -158,13 +171,20 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 
 hint - you can use the .includes method to help you solve this */
 
-function filterByWord(/*code here*/){
-
-    /*code here*/
-
+function filterByWord(list, word)
+{
+    let filteredList = [];
+    for(let i=0; i<list.length; i++)
+    {
+        if(list[i].includes(word))
+        {
+            filteredList.push(list[i]);
+        }
+    }
+    return filteredList;
 }
 
-
+console.log(filterByWord(originalFlavors, 'Chocolate'));
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/ 
 
@@ -178,11 +198,27 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/){
-
-    /*code here*/
-
+function getAverageWordLength(list)
+{
+    let sum = 0; 
+    let average = 0;
+    for(let i=0; i<list.length; i++)
+    {
+        let x = 1
+        for(let j=0; j<list[i].length;j++)
+        {
+            if(list[i].charAt(j) === " ")
+            {
+                x++;
+            }
+        }
+        sum += x;
+    }
+    average = (sum)/(list.length);
+    return average;
 }
+
+console.log(getAverageWordLength(originalFlavors));
 
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
@@ -266,8 +302,16 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
-
-    /*code here*/
-
+function getRandomFlavors(list1, list2, list3, list4)
+{
+    let randomFlavors =[];
+    let tg = [list1, list2, list3, list3];
+    for(let i=0; i<list1.length; i++)
+    {
+        chosenList = tg[Math.floor(Math.random()*4)];
+        randomFlavors.push(chosenList[Math.floor(Math.random()*chosenList.length)]);
+    }
+    return randomFlavors;
 }
+
+console.log(getRandomFlavors(originalFlavors,newFlavors,seasonalFlavors,regionalFlavors));
