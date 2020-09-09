@@ -128,7 +128,7 @@ Hint: You can use .splice() for this
 
 function removeFlavorByName(list, flavor)
 {
-    list.splice(list.indexOf('Vanilla'),1);
+    list.splice(list.indexOf(flavor),1);
     return list;
 }
 
